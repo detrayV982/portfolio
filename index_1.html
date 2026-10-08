@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vaughn DeTray</title>
+  <meta name="description" content="Vaughn DeTray's portfolio for TCSS 490: Generative AI and Software Development.">
+  <style>
+:root {
+  --bg: #0e1116;
+  --surface: #161b22;
+  --surface-2: #1c222b;
+  --border: #2a313c;
+  --text: #e6e9ef;
+  --muted: #9aa4b2;
+  --accent: #5eead4;
+  --accent-ink: #062a25;
+  --radius: 14px;
+  --maxw: 880px;
+  --gutter: 20px;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { color-scheme: dark; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); }
+a:focus-visible, .skip:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip {
+  position: absolute;
+  left: -999px;
+  top: 8px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 8px 12px;
+  border-radius: 6px;
+  z-index: 10;
+}
+.skip:focus { left: var(--gutter); }
+
+.hero,
+main,
+.footer {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+.hero { padding-top: 72px; padding-bottom: 40px; }
+
+.eyebrow {
+  margin: 0 0 12px;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+
+h1 {
+  margin: 0 0 16px;
+  font-size: clamp(2.2rem, 7vw, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.intro {
+  margin: 0;
+  max-width: 56ch;
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+
+.section-title {
+  margin: 8px 0 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 720px) {
+  .cards { grid-template-columns: 1fr 1fr; }
+  .card.is-done { grid-column: 1 / -1; }
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card.is-done { border-color: #2f5f58; }
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-number {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+.is-done .badge {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: var(--accent);
+}
+
+.card-name {
+  margin: 0;
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+}
+
+.card-title { margin: 0; font-weight: 600; }
+.card-summary { margin: 0; color: var(--muted); }
+
+.card-link {
+  align-self: flex-start;
+  margin-top: 4px;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+.card-link:hover { opacity: 0.85; }
+
+.card-pending {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.field { margin-top: 6px; }
+.field-label {
+  margin: 0 0 2px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.field-text { margin: 0; }
+.field-text.empty { color: var(--muted); font-style: italic; }
+
+.footer {
+  padding-top: 40px;
+  padding-bottom: 56px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.footer p { margin: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#cards">Skip to artifacts</a>
+
+  <header class="hero">
+    <p class="eyebrow">TCSS 490 &middot; Autumn 2026</p>
+    <h1>Vaughn DeTray</h1>
+    <p class="intro">
+      Computer Science and Systems student at UW Tacoma. This site holds the five things I build
+      in Generative AI and Software Development, one card each.
+    </p>
+  </header>
+
+  <main>
+    <h2 class="section-title" id="cards-heading">Artifacts</h2>
+    <ol class="cards" id="cards" aria-labelledby="cards-heading">
+      <noscript><li class="card"><p>This page needs JavaScript to show the artifact cards.</p></li></noscript>
+    </ol>
+  </main>
+
+  <footer class="footer">
+    <p>Built with a web chat AI. <a href="https://github.com/detrayV982/portfolio">Source and build log on GitHub</a>.</p>
+  </footer>
+
+  <script>
+// Edit this block to update the site. Each object is one card.
+//
+// When you finish an artifact:
+//   1. Set `status` to "done"
+//   2. Set `link` to the artifact's URL
+//   3. Rewrite `summary` to describe what you built
+//   4. Fill in `reflection` with a few sentences on how it went
+//
+// Until then, `idea` holds what you might build.
+
+window.CARDS = [
+  {
+    number: 1,
+    name: "Your Portfolio",
+    status: "done",
+    title: "This site",
+    link: "./",
+    linkLabel: "You are here",
+    summary:
+      "A static portfolio built with a free web chat AI. HTML, CSS, and JavaScript only. Every card is generated from this one data file, so adding an artifact means editing a few lines.",
+    idea: "",
+    reflection:
+      "I handed most of the build to Claude in a web chat, which is the first row of the course's AI use spectrum. It asked me four questions first, and I answered with no preference on three of them, so many of the design choices ended up being Claude's. A headless browser check showed the page rendering correctly on the first pass. The part I am trusting without having read it closely is the CSS layout. Next time I want to give more direction up front so the result says more about me.",
+  },
+  {
+    number: 2,
+    name: "Something You Will Use",
+    status: "idea",
+    title: "",
+    link: "",
+    linkLabel: "",
+    summary: "",
+    idea: "A job search tool that scans company career pages for new postings and alerts me the moment one appears, so I can apply before the pile builds up.",
+    reflection: "",
+  },
+  {
+    number: 3,
+    name: "AI Inside It",
+    status: "idea",
+    title: "",
+    link: "",
+    linkLabel: "",
+    summary: "",
+    idea: "A study helper that turns my lecture notes into practice questions and tells me which topics I keep missing.",
+    reflection: "",
+  },
+  {
+    number: 4,
+    name: "For Someone Else",
+    status: "idea",
+    title: "",
+    link: "",
+    linkLabel: "",
+    summary: "",
+    idea: "A sign-up and reminder page for a campus club, built so the club officers can run it without me.",
+    reflection: "",
+  },
+  {
+    number: 5,
+    name: "The Moonshot",
+    status: "idea",
+    title: "",
+    link: "",
+    linkLabel: "",
+    summary: "",
+    idea: "A code review assistant that explains why it flagged a change, so a reviewer learns something instead of just clicking accept.",
+    reflection: "",
+  },
+];
+  </script>
+  <script>
+(function () {
+  "use strict";
+
+  var list = document.getElementById("cards");
+  var cards = Array.isArray(window.CARDS) ? window.CARDS : [];
+
+  function el(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text) node.textContent = text;
+    return node;
+  }
+
+  function field(label, text, emptyText) {
+    var wrap = el("div", "field");
+    wrap.appendChild(el("h4", "field-label", label));
+    var body = el("p", text ? "field-text" : "field-text empty", text || emptyText);
+    wrap.appendChild(body);
+    return wrap;
+  }
+
+  function render(card) {
+    var done = card.status === "done";
+    var item = el("li", "card" + (done ? " is-done" : ""));
+    item.id = "artifact-" + card.number;
+
+    var top = el("div", "card-top");
+    top.appendChild(el("span", "card-number", "Artifact " + card.number));
+    top.appendChild(el("span", "badge", done ? "Done" : "Idea"));
+    item.appendChild(top);
+
+    item.appendChild(el("h3", "card-name", card.name));
+
+    if (done) {
+      if (card.title) item.appendChild(el("p", "card-title", card.title));
+      if (card.summary) item.appendChild(el("p", "card-summary", card.summary));
+
+      if (card.link) {
+        var a = el("a", "card-link", card.linkLabel || "Open artifact");
+        a.href = card.link;
+        if (/^https?:/i.test(card.link)) {
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+        }
+        item.appendChild(a);
+      }
+    } else {
+      item.appendChild(field("Idea", card.idea, "Add an idea in index.html."));
+      item.appendChild(el("p", "card-pending", "No link yet. This fills in when the artifact ships."));
+    }
+
+    item.appendChild(
+      field("Reflection", card.reflection, done ? "Add a short reflection in index.html." : "Written after the artifact is finished.")
+    );
+
+    return item;
+  }
+
+  cards.forEach(function (card) {
+    list.appendChild(render(card));
+  });
+})();
+  </script>
+</body>
+</html>
