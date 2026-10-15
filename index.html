@@ -250,13 +250,15 @@ window.CARDS = [
   {
     number: 2,
     name: "Something You Will Use",
-    status: "idea",
-    title: "",
-    link: "",
-    linkLabel: "",
-    summary: "",
-    idea: "A job search tool that scans company career pages for new postings and alerts me the moment one appears, so I can apply before the pile builds up.",
-    reflection: "",
+    status: "done",
+    title: "jobsearch",
+    link: "https://github.com/detrayV982/jobsearch",
+    linkLabel: "View the repo",
+    summary:
+      "A job search page that runs on my own computer. I type a job title and a location, and it lists the newest postings first, with the site each one came from. Clicking a title opens the original posting. It uses the JSearch API, which carries LinkedIn and Indeed listings, and is written in Python with only the standard library.",
+    idea: "",
+    reflection:
+      "I started with an alert tool that would watch company career pages and message me on Discord. Partway through I changed my mind, because I did not want something running all day. I asked Claude to remake it as a search page: type a title and location, get the newest postings first, click one to open it. That was my call and it threw out most of the first version. I asked about LinkedIn and Indeed, and Claude said they have no public search API, so it used the JSearch API instead, which lists jobs from those sites. I also asked it to keep my API key out of the browser and to use sensible security, and it added checks and tests for that. When I first ran it on my laptop, the page said forbidden, and then JSearch returned a 404. Claude's tests had passed both times, so both bugs only showed up with a real browser and the real service. Each got fixed, and a real search works now. Adzuna is wired in as a second source, but I have only tried JSearch. I am still trusting the duplicate removal and the security code without having read every line. Next time I want to test against the real service earlier.",
   },
   {
     number: 3,
