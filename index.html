@@ -149,6 +149,11 @@ h1 {
   color: var(--accent-ink);
   border-color: var(--accent);
 }
+.is-progress .badge {
+  background: transparent;
+  color: var(--accent);
+  border-color: var(--accent);
+}
 
 .card-name {
   margin: 0;
@@ -232,6 +237,9 @@ h1 {
 //   4. Fill in `reflection` with a few sentences on how it went
 //
 // Until then, `idea` holds what you might build.
+//
+// For a checkpoint, set `status` to "progress". The card shows the title, summary and link
+// with an "In progress" badge, and `reflection` is labeled as progress so far.
 
 window.CARDS = [
   {
@@ -276,13 +284,15 @@ window.CARDS = [
   {
     number: 4,
     name: "For Someone Else",
-    status: "idea",
-    title: "",
-    link: "",
-    linkLabel: "",
-    summary: "",
-    idea: "A sign-up and reminder page for a campus club, built so the club officers can run it without me.",
-    reflection: "",
+    status: "progress",
+    title: "UWT Trail Finder",
+    link: "https://github.com/saeedesparza/uwt-trail-finder",
+    linkLabel: "View the team repo",
+    summary:
+      "A trail finder for UW Tacoma students who want to start hiking. Trails come up one at a time as swipe cards, each with a color-coded difficulty badge, drive time from campus, length, and a link to the official trail page. I am building it with Saeed Esparza. He owns the app and the interface, and I own the trail data: 15 to 25 real trails within about 90 minutes of UWT, with a source for each. It will be a static site on GitHub Pages.",
+    idea: "",
+    reflection:
+      "Week 1 of 2. Saeed and I chose UW Tacoma students who want to hike as our audience, and Saeed interviewed three of them: Ivan, Marcus and Aramis. Two asked for swipe cards without us suggesting it, all three drive so we dropped bus filtering, and Aramis, who does not hike yet, needs difficulty shown first. We changed the plan around those answers and logged the changes. We also wrote a shared plan, log and CLAUDE.md in the team repo so both of our Claude Code agents follow the same ownership rules and work on separate branches. Still to do: I research and write the trail data and its sources, we agree on the data format, and we show the finished app to the three students before the handover.",
   },
   {
     number: 5,
@@ -320,13 +330,14 @@ window.CARDS = [
   }
 
   function render(card) {
-    var done = card.status === "done";
-    var item = el("li", "card" + (done ? " is-done" : ""));
+    var progress = card.status === "progress";
+    var done = card.status === "done" || progress;
+    var item = el("li", "card" + (card.status === "done" ? " is-done" : "") + (progress ? " is-progress" : ""));
     item.id = "artifact-" + card.number;
 
     var top = el("div", "card-top");
     top.appendChild(el("span", "card-number", "Artifact " + card.number));
-    top.appendChild(el("span", "badge", done ? "Done" : "Idea"));
+    top.appendChild(el("span", "badge", progress ? "In progress" : done ? "Done" : "Idea"));
     item.appendChild(top);
 
     item.appendChild(el("h3", "card-name", card.name));
@@ -350,7 +361,7 @@ window.CARDS = [
     }
 
     item.appendChild(
-      field("Reflection", card.reflection, done ? "Add a short reflection in index.html." : "Written after the artifact is finished.")
+      field(progress ? "Progress so far" : "Reflection", card.reflection, done ? "Add a short reflection in index.html." : "Written after the artifact is finished.")
     );
 
     return item;
