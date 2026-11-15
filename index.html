@@ -297,13 +297,15 @@ window.CARDS = [
   {
     number: 5,
     name: "The Moonshot",
-    status: "idea",
-    title: "",
-    link: "",
-    linkLabel: "",
-    summary: "",
-    idea: "A code review assistant that explains why it flagged a change, so a reviewer learns something instead of just clicking accept.",
-    reflection: "",
+    status: "progress",
+    title: "Edge Lab",
+    link: "https://github.com/detrayV982/edge-lab",
+    linkLabel: "View the repo",
+    summary:
+      "An NFL betting analysis tool that uses paper money only. It turns sportsbook odds into win probabilities, builds my own win-probability model, and compares the two to show where they disagree. No real bets are placed.",
+    idea: "",
+    reflection:
+      "Week 6 is the scaffold. The odds-to-probability math, the margin removal, and a basic Elo model work, and all 20 unit tests pass. The comparison table works on a made-up sample game, and the cache logic is tested to make no network call when a cached file exists. The live odds pull is untested because I have not added The Odds API key yet, so there are no real model-versus-market numbers. I also have not checked the Elo model for accuracy or calibration. Next up is the real stats pipeline, a better model, a time-based split, a calibration curve, and the paper-bet ledger.",
   },
 ];
   </script>
