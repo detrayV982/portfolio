@@ -305,7 +305,7 @@ window.CARDS = [
       "An NFL betting analysis tool that uses paper money only. It turns sportsbook odds into win probabilities, builds my own win-probability model, and compares the two to show where they disagree. No real bets are placed.",
     idea: "",
     reflection:
-      "Week 6 is the scaffold. The odds-to-probability math, the margin removal, and a basic Elo model work, and all 20 unit tests pass. The comparison table works on a made-up sample game, and the cache logic is tested to make no network call when a cached file exists. The live odds pull is untested because I have not added The Odds API key yet, so there are no real model-versus-market numbers. I also have not checked the Elo model for accuracy or calibration. Next up is the real stats pipeline, a better model, a time-based split, a calibration curve, and the paper-bet ledger.",
+      "Week 7 is the first real result. I built a stats pipeline from nflverse data, a logistic regression model, a time-based split (trained on 2007 to 2022, tested on 2023 onward so no future games leak in), a calibration curve, and a fake-money paper ledger. All 41 tests pass. Then I scored my model, plain Elo, and the sportsbook odds with the margin removed on 990 games the model never saw. The market won on both Brier score (0.211 vs 0.222) and log loss (0.610 vs 0.634), and the gap holds up under a bootstrap check, so it is not just luck. My model does beat Elo (0.222 vs 0.227). The calibration curve shows it overstates home teams in the 0.3 to 0.4 range. One caveat: the moneylines in the data are not documented as closing lines, so the true closing line may be even harder to beat. Next week is the backtester with a leakage guard.",
   },
 ];
   </script>
